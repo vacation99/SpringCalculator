@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2>Калькулятор</h2>
+<table>
+    <tr>
+        <td width="750" align="up">
+            <form th:method="post" th:action="@{/main}">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="first">Первое число:</label>
+                            <input name="firstNumber" id="first" placeholder="Введите первое число"/>
+                        </td>
+                        <td>
+                            <label for="second">Второе число:</label>
+                            <input name="secondNumber" id="second" placeholder="Введите второе число">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="40">
+                            <label for="ac">Выберите действие</label>
+                            <select id="ac" name="action">
+                                <option>Сложение</option>
+                                <option>Вычитание</option>
+                                <option>Умножение</option>
+                                <option>Деление</option>
+                                <option>Возведение в степень</option>
+                                <option>Извлечение из корня</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit">Выполнить</button>
+            </form> <br/>
+            <table>
+                <tr>
+                    <td>
+                        <label for="res">Результат:</label>
+                        <input name="result" id="res" th:value="${model}">
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table border="1">
+                <tr>
+                    <th>Операция</th>
+                    <th>Результат</th>
+                    <th>Дата</th>
+                </tr>
+                <tr th:each="el : ${history}">
+                    <td th:text="${el.numbers}"/><td th:text="${el.result}"/><td th:text="${el.date}"/>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table> <br/> <hr/> <br/>
+<table>
+    <tr>
+        <td>
+            <a href="/clearHistory">Отчистить историю</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
